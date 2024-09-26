@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 
@@ -34,8 +36,12 @@ public class MovieController {
 
 @GetMapping("/dailyBoxOffice")
 public Mono<List<Movie>> getDailyBoxOffice() {
-    // 오늘 날짜를 yyyyMMdd 형식으로 포맷팅
-    String targetDate = "20120101";
+
+    LocalDateTime today = LocalDateTime.now();
+    LocalDateTime yesterday = today.minusDays(1);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+    String targetDate = yesterday.format(formatter);
+
     // MovieService를 호출하여 일일 박스오피스 정보를 가져옵니다.
     return movieService.getDailyBoxOffice(apiKey, targetDate)
             .flatMapMany(Flux::fromIterable)
