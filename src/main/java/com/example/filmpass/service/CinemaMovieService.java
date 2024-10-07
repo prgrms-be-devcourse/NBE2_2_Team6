@@ -37,7 +37,7 @@ public class CinemaMovieService {
             int hour = allminutes/60;
             int min = allminutes%60;
             LocalTime showtime = LocalTime.of(hour, min);
-            if(cinemaMovieRepository.findAll().isEmpty()){
+            if(cinemaMovieRepository.findByMovie_MovieId(movie.getMovieId()).isEmpty()){
                 for (int i = 0; i < 7; i++) {
                     CinemaMovie cinemaMovie = CinemaMovie.builder()
                             .movie(movie) // movie 객체 설정
@@ -54,8 +54,8 @@ public class CinemaMovieService {
                     moviesDto.add(cinemaMovieDto);
                 }
             }
+            }
 
-        }
         return moviesDto;
     }
 
