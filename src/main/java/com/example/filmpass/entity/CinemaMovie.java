@@ -38,5 +38,8 @@ public class CinemaMovie {
 
     private LocalTime screenTime;
 
+    public void addCinema(Cinema cinema){
+        this.cinema= cinema;
+    }
 
 }
