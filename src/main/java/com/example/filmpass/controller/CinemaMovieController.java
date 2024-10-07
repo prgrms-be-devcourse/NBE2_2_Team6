@@ -20,8 +20,8 @@ public class CinemaMovieController {
 
     //상영중인 영화 등록
     @PostMapping()
-    public ResponseEntity<CinemaMovieDto> create(@RequestBody CinemaMovieDto cinemaMovieDto) {
-        return ResponseEntity.ok(cinemaMovieService.registerCinema(cinemaMovieDto));
+    public ResponseEntity<List<CinemaMovieDto>> create() {
+        return ResponseEntity.ok(cinemaMovieService.registerCinema());
     }
 
     //상영중인 영화 조회

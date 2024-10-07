@@ -36,6 +36,15 @@ public class CinemaMovieDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalTime screenTime;
 
+    private Movie movie;
+
+    public CinemaMovieDto(Long id, Movie movie, LocalDate screenDate, LocalTime screenTime,String title){
+        this.cinemaMovieId = id;
+        this.movie = movie;
+        this.screenDate = screenDate;
+        this.screenTime = screenTime;
+        this.title = title;
+    }
 
 
     public CinemaMovieDto(Long id, CinemaMovie cinemaMovie) {
